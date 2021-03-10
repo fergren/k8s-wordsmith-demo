@@ -1,17 +1,18 @@
+
 apiVersion: v1
 kind: Service
 metadata:
   name: db
   labels:
-    app: words-db
+    app: db
 spec:
   ports:
     - port: 5432
       targetPort: 5432
       name: db
   selector:
-    app: words-db
-  clusterIP: None
+    app: db
+  
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -27,7 +28,7 @@ spec:
     spec:
       containers:
       - name: db
-        image: dockersamples/k8s-wordsmith-db
+        image: 321455566/db
         ports:
         - containerPort: 5432
           name: db
@@ -37,49 +38,49 @@ kind: Service
 metadata:
   name: words
   labels:
-    app: words-api
+    app: words
 spec:
   ports:
     - port: 8080
       targetPort: 8080
-      name: api
+      name: words
   selector:
-    app: words-api
-  clusterIP: None
+    app: words
+  
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: words
   labels:
-    app: words-api
+    app: words
 spec:
   replicas: 5
   template:
     metadata:
       labels:
-        app: words-api
+        app: words
     spec:
       containers:
       - name: words
-        image: dockersamples/k8s-wordsmith-api
+        image: 321455566/words
         ports:
         - containerPort: 8080
-          name: api
+          name: words
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: web
   labels:
-    app: words-web
+    app: web
 spec:
   ports:
     - port: 8081
       targetPort: 80
       name: web
   selector:
-    app: words-web
+    app: web
   type: LoadBalancer
 ---
 apiVersion: apps/v1beta1
@@ -87,16 +88,16 @@ kind: Deployment
 metadata:
   name: web
   labels:
-    app: words-web
+    app: web
 spec:
   template:
     metadata:
       labels:
-        app: words-web
+        app: web
     spec:
       containers:
       - name: web
-        image: dockersamples/k8s-wordsmith-web
+        image: 321455566/web
         ports:
         - containerPort: 80
-          name: words-web
+          name: web
