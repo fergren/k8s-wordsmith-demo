@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: db
-        image: 321455566/db
+        image: 321455566/db:master
         ports:
         - containerPort: 5432
           name: db
@@ -63,7 +63,7 @@ spec:
     spec:
       containers:
       - name: words
-        image: 321455566/words
+        image: 321455566/words:master
         ports:
         - containerPort: 8080
           name: words
@@ -97,7 +97,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: 321455566/web
+        image: 321455566/web:${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}
         ports:
         - containerPort: 80
           name: web
