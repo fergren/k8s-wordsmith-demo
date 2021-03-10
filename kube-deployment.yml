@@ -19,12 +19,12 @@ kind: Deployment
 metadata:
   name: db
   labels:
-    app: words-db
+    app: db
 spec:
   template:
     metadata:
       labels:
-        app: words-db
+        app: db
     spec:
       containers:
       - name: db
