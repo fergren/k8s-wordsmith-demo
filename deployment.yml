@@ -1,19 +1,4 @@
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: db
-  labels:
-    app: db
-spec:
-  ports:
-    - port: 5432
-      targetPort: 5432
-      name: db
-  selector:
-    app: db
-  
----
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -32,20 +17,7 @@ spec:
         ports:
         - containerPort: 5432
           name: db
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: words
-  labels:
-    app: words
-spec:
-  ports:
-    - port: 8080
-      targetPort: 8080
-      name: words
-  selector:
-    app: words
+
   
 ---
 apiVersion: extensions/v1beta1
@@ -67,21 +39,7 @@ spec:
         ports:
         - containerPort: 8080
           name: words
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: web
-  labels:
-    app: web
-spec:
-  ports:
-    - port: 8081
-      targetPort: 80
-      name: web
-  selector:
-    app: web
-  type: LoadBalancer
+
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
