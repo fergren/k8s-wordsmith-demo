@@ -14,7 +14,7 @@ spec:
     app: db
   
 ---
-apiVersion: apps/v1beta1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: db
@@ -48,7 +48,7 @@ spec:
     app: words
   
 ---
-apiVersion: apps/v1beta1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: words
@@ -83,7 +83,7 @@ spec:
     app: web
   type: LoadBalancer
 ---
-apiVersion: apps/v1beta1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: web
