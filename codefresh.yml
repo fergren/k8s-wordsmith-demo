@@ -1,0 +1,48 @@
+version: '1.0'
+kind: pipeline
+metadata:
+  name: Runner/CF_Runner_Demo
+  revision: 6
+  projectId: 6067149ccefd716cb4974639
+  accountId: 606300d6959da131ac560a05
+  created_at: '2021-04-02T12:57:06.348Z'
+  updated_at: '2021-04-14T09:55:44.409Z'
+  project: Runner
+  deprecate: {}
+  id: 606714a21ca52d5f866e6b08
+spec:
+  triggers:
+    - name: test1
+      description: f
+      type: git
+      repo: codefresh-io/cli
+      events:
+        - release
+      pullRequestAllowForkEvents: false
+      commentRegex: /.*/gi
+      branchRegex: /.*/gi
+      branchRegexInput: regex
+      provider: github
+      disabled: false
+      options:
+        noCache: false
+        noCfCache: false
+        resetVolume: false
+      context: github
+      contexts: []
+      variables: []
+      status: 'Error: failed to create the trigger'
+      id: 6076bc17c77bdace91a98af4
+      endpoint: 'https://g.codefresh.io/api/providers/github/hook/l1WrFih72t'
+      secret: lGjpU74YNL624Cuq
+  stages:
+    - test
+  runtimeEnvironment:
+    name: minikube/codefresh
+  steps:
+    test:
+      stage: test
+      title: test
+      image: 'alpine:latest'
+      commands:
+        - echo hello Codefresh Runner!
